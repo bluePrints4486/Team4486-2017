@@ -1,8 +1,10 @@
 package org.usfirst.frc.team4486.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.usfirst.frc.team4486.robot.commands.*;
 
-import org.usfirst.frc.team4486.robot.commands.ExampleCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -36,4 +38,21 @@ public class OI {
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
+	
+	public static Joystick driverStick = new Joystick(RobotMap.joystickChannel);
+	public static Joystick manipulatorjoystick = new Joystick(RobotMap.manipulatorJoystick);
+	
+	Button openButton = new JoystickButton(manipulatorjoystick, RobotMap.openButton);
+	Button closeButton = new JoystickButton(manipulatorjoystick,RobotMap.closeButton);
+	Button upButton = new JoystickButton(manipulatorjoystick,RobotMap.upButton);
+	Button downButton = new JoystickButton(manipulatorjoystick,RobotMap.downButton);
+	
+public OI(){
+	upButton.whenPressed(new PickupUp());
+	downButton.whenPressed(new PickupDown());
+	openButton.whenPressed(new PickupOpen());
+	closeButton.whenPressed(new PickupClose());
+	
+}
+	
 }
