@@ -18,10 +18,10 @@ public class RobotMap {
 	// public static int rangefinderModule = 1;
 	//
 	// Alan was here
-	
-	public static final int frontLeftChannel	= 0;	
-	   public static final int rearLeftChannel	= 1;
-	    public static final int frontRightChannel	= 2;
+	   //Motor ports
+	   public static final int frontLeftChannel	= 0;	
+	   public static final int rearLeftChannel = 1;
+	   public static final int frontRightChannel = 2;
 	   public static final int rearRightChannel	= 3;
 	   
 	   public static final int solenoidOpen = 0;
@@ -34,7 +34,8 @@ public class RobotMap {
 	   public static final int openButton = 8;
 	   public static final int closeButton = 10;
 	   
-		   
+	   //Camera session changer
+	   public static final int CAMERA_BUTTON = 4; 
 	    
 	    // The channel on the driver station that the joystick is connected to
 	   public static final int joystickChannel	= 0;
