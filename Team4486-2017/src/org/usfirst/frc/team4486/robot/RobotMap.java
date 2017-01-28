@@ -34,8 +34,6 @@ public class RobotMap {
 	   public static final int openButton = 8;
 	   public static final int closeButton = 10;
 	   
-	   //Camera session changer
-	   public static final int CAMERA_BUTTON = 4; 
 	    
 	    // The channel on the driver station that the joystick is connected to
 	   public static final int joystickChannel	= 0;

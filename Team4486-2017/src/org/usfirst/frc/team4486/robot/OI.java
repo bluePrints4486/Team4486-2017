@@ -46,14 +46,12 @@ public class OI {
 	Button closeButton = new JoystickButton(manipulatorjoystick,RobotMap.closeButton);
 	Button upButton = new JoystickButton(manipulatorjoystick,RobotMap.upButton);
 	Button downButton = new JoystickButton(manipulatorjoystick,RobotMap.downButton);
-	Button cameraSessionButton = new JoystickButton(manipulatorjoystick, RobotMap.CAMERA_BUTTON);
 	
 public OI(){
 	upButton.whenPressed(new PickupUp());
 	downButton.whenPressed(new PickupDown());
 	openButton.whenPressed(new PickupOpen());
 	closeButton.whenPressed(new PickupClose());
-	cameraSessionButton.whenPressed(new );
 	
 }
 	

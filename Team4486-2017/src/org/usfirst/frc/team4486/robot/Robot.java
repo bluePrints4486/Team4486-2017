@@ -24,6 +24,7 @@ public class Robot extends IterativeRobot {
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static GearPickUp gearPickUp = new GearPickUp();
 	public static Drivetrain drivetrain = new Drivetrain();
+	
 	public static CameraServer currSession;
 	
 	public static OI oi;
@@ -38,10 +39,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
-		//CameraServer.getInstance().startAutomaticCapture("cam0"); //rip Abel 
-		currSession.getInstance();
-		currSession.startAutomaticCapture("cam0");
-		
+		CameraServer.getInstance().startAutomaticCapture("cam0",0); //rip Abel 
+		CameraServer.getInstance().startAutomaticCapture("cam1",1); //rip Abel 
 		//chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		//SmartDashboard.putData("Auto mode", chooser);
