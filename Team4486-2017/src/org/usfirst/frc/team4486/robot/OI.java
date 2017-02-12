@@ -40,19 +40,20 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 	
 	public static Joystick driverStick = new Joystick(RobotMap.joystickChannel);
-	public static Joystick manipulatorjoystick = new Joystick(RobotMap.manipulatorJoystick);
+	public static Joystick manipulatorJoystick = new Joystick(RobotMap.manipulatorJoystick);
 	
-	Button openButton = new JoystickButton(manipulatorjoystick, RobotMap.openButton);
-	Button closeButton = new JoystickButton(manipulatorjoystick,RobotMap.closeButton);
-	Button upButton = new JoystickButton(manipulatorjoystick,RobotMap.upButton);
-	Button downButton = new JoystickButton(manipulatorjoystick,RobotMap.downButton);
+	Button openButton = new JoystickButton(manipulatorJoystick, RobotMap.openButton);
+	Button closeButton = new JoystickButton(manipulatorJoystick,RobotMap.closeButton);
+	Button upButton = new JoystickButton(manipulatorJoystick,RobotMap.upButton);
+	Button downButton = new JoystickButton(manipulatorJoystick,RobotMap.downButton);
+	Button intakeStartButton = new JoystickButton(manipulatorJoystick, RobotMap.INTAKE_BUTTON);
 	
 public OI(){
 	upButton.whenPressed(new PickupUp());
 	downButton.whenPressed(new PickupDown());
 	openButton.whenPressed(new PickupOpen());
 	closeButton.whenPressed(new PickupClose());
-	
+	intakeStartButton.whenPressed(new IntakeActuate());
 }
 	
 }

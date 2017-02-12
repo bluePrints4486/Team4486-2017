@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team4486.robot.commands.ExampleCommand;
 import org.usfirst.frc.team4486.robot.subsystems.*;
 
 /**
@@ -21,13 +20,14 @@ import org.usfirst.frc.team4486.robot.subsystems.*;
  */
 public class Robot extends IterativeRobot {
 
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static GearPickUp gearPickUp = new GearPickUp();
-	public static Drivetrain drivetrain = new Drivetrain();
+	public static Drivetrain drivetrain = new Drivetrain();	
+	public static WinchSystem winchSystem = new WinchSystem();
+	public static IntakeSystem intakeSystem = new IntakeSystem();
 	
 	public static CameraServer currSession;
 	
-	public static OI oi;
+	public static OI oi;  
 
 	Command autonomousCommand;
 	//SendableChooser<Command> chooser = new SendableChooser<>();
@@ -39,7 +39,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
-		CameraServer.getInstance().startAutomaticCapture("cam0",0); //rip Abel 
+		CameraServer.getInstance().startAutomaticCapture("cam0",0); //rip Abel  
 		CameraServer.getInstance().startAutomaticCapture("cam1",1); //rip Abel 
 		//chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
