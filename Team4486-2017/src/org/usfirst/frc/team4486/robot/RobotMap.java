@@ -33,8 +33,10 @@ public class RobotMap {
 	   //Pneumatics PCM ports
 	   public static final int solenoidOpen = 0;
 	   public static final int solenoidClose = 1;
-	   public  static final int solenoidUp = 2;
-	   public  static final int solenoidDown = 3;
+	   public static final int solenoidUp = 2;
+	   public static final int solenoidDown = 3;
+	   public static final int HOPPER_OPEN = 4;
+	   public static final int HOPPER_CLOSE = 5;
 	   
 	   //Manipulator joystick buttons
 	   public static final int upButton = 7;
