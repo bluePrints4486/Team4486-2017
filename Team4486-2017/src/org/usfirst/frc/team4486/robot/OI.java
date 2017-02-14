@@ -47,13 +47,21 @@ public class OI {
 	Button upButton = new JoystickButton(manipulatorJoystick,RobotMap.upButton);
 	Button downButton = new JoystickButton(manipulatorJoystick,RobotMap.downButton);
 	Button intakeStartButton = new JoystickButton(manipulatorJoystick, RobotMap.INTAKE_BUTTON);
+	Button elevatorButton = new JoystickButton(manipulatorJoystick ,RobotMap.ELEVATOR_BUTTON);
+	Button openHopperButton = new JoystickButton(manipulatorJoystick, RobotMap.H_OPEN);
+	Button closeHopperButton = new JoystickButton(manipulatorJoystick, RobotMap.H_CLOSE);
+	Button winchButton = new JoystickButton(manipulatorJoystick, RobotMap.WINCH_BUTTON);
 	
 public OI(){
 	upButton.whenPressed(new PickupUp());
 	downButton.whenPressed(new PickupDown());
 	openButton.whenPressed(new PickupOpen());
 	closeButton.whenPressed(new PickupClose());
-	intakeStartButton.whenPressed(new IntakeActuate());
+	intakeStartButton.whileHeld(new IntakeActuate()); 
+	elevatorButton.whileHeld(new ElevatorActuate());
+	openHopperButton.whenPressed(new HopperOpen());
+	closeHopperButton.whenPressed(new HopperClose());
+	winchButton.whileHeld(new WinchActuate());
 }
 	
 }

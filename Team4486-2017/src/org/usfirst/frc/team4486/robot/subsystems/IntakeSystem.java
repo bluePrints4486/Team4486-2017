@@ -20,7 +20,7 @@ public class IntakeSystem extends Subsystem {
 	public void intakeGo()
 	{
 		leftIntake.set(1);
-		rightIntake.set(-1);
+		rightIntake.set(1);
 	}
 	
 	public void intakeStop()

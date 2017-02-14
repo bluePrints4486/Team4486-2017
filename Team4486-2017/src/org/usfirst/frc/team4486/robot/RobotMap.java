@@ -18,6 +18,7 @@ public class RobotMap {
 	// public static int rangefinderModule = 1;
 	//
 	// Alan was here
+	
 	   //PWM ports
 	   public static final int frontLeftChannel	= 0;	
 	   public static final int rearLeftChannel = 1;
@@ -25,7 +26,7 @@ public class RobotMap {
 	   public static final int rearRightChannel	= 3;
 	   public static final int ELEVATOR_MOTOR = 4;
 	   public static final int WINCHMOTOR_TOP = 5;
-	   public static final int WINCHMOTOR_BOTTOM = 6;
+	   public static final int WINCHMOTOR_BOTTOM = 6; 
 	   public static final int INTAKE_LEFT = 7; //Using right and left relative to looking at the robot from the ball pick up side
 	   public static final int INTAKE_RIGHT = 8;
 	   
@@ -43,7 +44,11 @@ public class RobotMap {
 	   public static final int downButton = 9;
 	   public static final int openButton = 8;
 	   public static final int closeButton = 10;
-	   public static final int INTAKE_BUTTON = 6;
+	   public static final int INTAKE_BUTTON = 5;
+	   public static final int ELEVATOR_BUTTON = 1;
+	   public static final int H_OPEN = 4;
+	   public static final int H_CLOSE = 6;
+	   public static final int WINCH_BUTTON = 2;
 	    
 	    //Joystick ports
 	   public static final int joystickChannel	= 0;

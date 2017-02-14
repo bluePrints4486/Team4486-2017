@@ -24,6 +24,8 @@ public class Robot extends IterativeRobot {
 	public static Drivetrain drivetrain = new Drivetrain();	
 	public static WinchSystem winchSystem = new WinchSystem();
 	public static IntakeSystem intakeSystem = new IntakeSystem();
+	public static BallElevatorSystem ballElevatorSystem = new BallElevatorSystem();
+	public static HopperSystem hopperSystem = new HopperSystem();
 	
 	public static CameraServer currSession;
 	
