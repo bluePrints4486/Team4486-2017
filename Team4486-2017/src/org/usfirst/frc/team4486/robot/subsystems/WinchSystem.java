@@ -16,7 +16,7 @@ public class WinchSystem extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	//hi
+	//htst
 	VictorSP topMotor = new VictorSP(RobotMap.WINCHMOTOR_TOP);
 	VictorSP bottomMotor = new VictorSP(RobotMap.WINCHMOTOR_BOTTOM); 
 	
