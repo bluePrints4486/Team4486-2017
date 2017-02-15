@@ -29,12 +29,15 @@ public class Drivetrain extends Subsystem {
 		robotDrive = new RobotDrive(fLeftChannel, rLeftChannel, fRightChannel, rRightChannel);
 		
 		robotDrive.setInvertedMotor(MotorType.kFrontRight, true);	// invert the left side motors
-		robotDrive.setInvertedMotor(MotorType.kRearRight, true);		// you may need to change or remove this to match your robot
+		robotDrive.setInvertedMotor(MotorType.kRearRight, true); 		// you may need to change or remove this to match your robot
 		robotDrive.setMaxOutput(0.5);
 	}
 	
 	public void drive(){
 		robotDrive.mecanumDrive_Cartesian(OI.driverStick.getX(), OI.driverStick.getY(), OI.driverStick.getZ(), 0);
+	}
+	public void driveStop(){
+		robotDrive.setMaxOutput(0);
 	}
 	
     public void initDefaultCommand() {

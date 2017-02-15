@@ -20,10 +20,10 @@ public class RobotMap {
 	// Alan was here
 	
 	   //PWM ports
-	   public static final int frontLeftChannel	= 0;	
-	   public static final int rearLeftChannel = 1;
-	   public static final int frontRightChannel = 2;
-	   public static final int rearRightChannel	= 3;
+	   public static final int frontLeftChannel	= 2;	
+	   public static final int rearLeftChannel = 3;
+	   public static final int frontRightChannel = 0;
+	   public static final int rearRightChannel	= 1;
 	   public static final int ELEVATOR_MOTOR = 4;
 	   public static final int WINCHMOTOR_TOP = 5;
 	   public static final int WINCHMOTOR_BOTTOM = 6; 
