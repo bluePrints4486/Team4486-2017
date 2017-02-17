@@ -2,6 +2,7 @@ package org.usfirst.frc.team4486.robot.subsystems;
 
 import org.usfirst.frc.team4486.robot.OI;
 import org.usfirst.frc.team4486.robot.RobotMap;
+import org.usfirst.frc.team4486.robot.commands.WinchActuate;
 import org.usfirst.frc.team4486.robot.commands.WinchStop;
 
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -24,8 +25,8 @@ public class WinchSystem extends Subsystem {
 	
 	public void winchActuate()
 	{
-		topMotor.set(-1);
-		bottomMotor.set(-1);
+		topMotor.set(-1.0*Math.abs(OI.manipulatorJoystick.getY()));
+		bottomMotor.set(-1.0*Math.abs(OI.manipulatorJoystick.getY()));
 	}
 	
 	public void winchStop()
@@ -37,7 +38,7 @@ public class WinchSystem extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new WinchStop());
+    	setDefaultCommand(new WinchActuate());
     }
 }
 

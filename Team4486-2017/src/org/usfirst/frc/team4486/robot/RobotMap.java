@@ -49,6 +49,9 @@ public class RobotMap {
 	   public static final int H_OPEN = 4;
 	   public static final int H_CLOSE = 6;
 	   public static final int WINCH_BUTTON = 2;
+	   
+	   //Driver joystick buttons
+	   public static final int CAMERA_SWITCH_BUTTON = 1;
 	    
 	    //Joystick ports
 	   public static final int joystickChannel	= 0;

@@ -41,8 +41,11 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
-		CameraServer.getInstance().startAutomaticCapture("cam0",0); //rip Abel  
-		CameraServer.getInstance().startAutomaticCapture("cam1",1); //rip Abel 
+		
+		Vision.StartVisionThread();
+		
+		//CameraServer.getInstance().startAutomaticCapture("cam0",0); //rip Abel  
+		//CameraServer.getInstance().startAutomaticCapture("cam1",1); //rip Abel 
 		//chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		//SmartDashboard.putData("Auto mode", chooser);
