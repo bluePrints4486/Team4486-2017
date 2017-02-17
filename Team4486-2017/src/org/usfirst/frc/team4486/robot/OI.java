@@ -42,15 +42,17 @@ public class OI {
 	public static Joystick driverStick = new Joystick(RobotMap.joystickChannel);
 	public static Joystick manipulatorJoystick = new Joystick(RobotMap.manipulatorJoystick);
 	
-	Button openButton = new JoystickButton(manipulatorJoystick, RobotMap.openButton);
-	Button closeButton = new JoystickButton(manipulatorJoystick,RobotMap.closeButton);
-	Button upButton = new JoystickButton(manipulatorJoystick,RobotMap.upButton);
-	Button downButton = new JoystickButton(manipulatorJoystick,RobotMap.downButton);
-	Button intakeStartButton = new JoystickButton(manipulatorJoystick, RobotMap.INTAKE_BUTTON);
-	Button elevatorButton = new JoystickButton(manipulatorJoystick ,RobotMap.ELEVATOR_BUTTON);
-	Button openHopperButton = new JoystickButton(manipulatorJoystick, RobotMap.H_OPEN);
-	Button closeHopperButton = new JoystickButton(manipulatorJoystick, RobotMap.H_CLOSE);
-	Button winchButton = new JoystickButton(manipulatorJoystick, RobotMap.WINCH_BUTTON);
+	public static Button openButton = new JoystickButton(manipulatorJoystick, RobotMap.openButton);
+	public static Button closeButton = new JoystickButton(manipulatorJoystick,RobotMap.closeButton);
+	public static Button upButton = new JoystickButton(manipulatorJoystick,RobotMap.upButton);
+	public static Button downButton = new JoystickButton(manipulatorJoystick,RobotMap.downButton);
+	public static Button intakeStartButton = new JoystickButton(manipulatorJoystick, RobotMap.INTAKE_BUTTON);
+	public static Button elevatorButton = new JoystickButton(manipulatorJoystick ,RobotMap.ELEVATOR_BUTTON);
+	public static Button openHopperButton = new JoystickButton(manipulatorJoystick, RobotMap.H_OPEN);
+	public static Button closeHopperButton = new JoystickButton(manipulatorJoystick, RobotMap.H_CLOSE);
+	public static Button winchButton = new JoystickButton(manipulatorJoystick, RobotMap.WINCH_BUTTON);
+	
+	public static Button cameraSwitchButton = new JoystickButton(driverStick, RobotMap.CAMERA_SWITCH_BUTTON);
 	
 public OI(){
 	upButton.whenPressed(new PickupUp());

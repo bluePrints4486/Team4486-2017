@@ -12,24 +12,28 @@ public class Vision {
 	
 	public static void StartVisionThread(){
 		//This block of code is set up as a thread
-		//Everything inside will be run constantly in the background
+		//Everything inside will be run in the background not
+		//interfering with normal robot functions
 		Thread t = new Thread(() -> {
     		
 			//Stores which camera is streaming
     		boolean cameraState = false;		
     		
+    		// gets the current instance of the camera server so we only use one
+    		CameraServer cameraServer = CameraServer.getInstance();
+    		
     		// Setup 2 cameras servers 
-    		UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
+    		UsbCamera camera1 = new UsbCamera("front camera",0);
             camera1.setResolution(320, 240);
             camera1.setFPS(30);
-            UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+            UsbCamera camera2 = new UsbCamera("rear camera",1);
             camera2.setResolution(320, 240);
             camera2.setFPS(30);
             
             //Create objects so we can extract images from the camera servers
             // and objects so we can have an output camera server
-            CvSink cvSink1 = CameraServer.getInstance().getVideo(camera1);
-            CvSink cvSink2 = CameraServer.getInstance().getVideo(camera2);
+            CvSink cvSink1 = cameraServer.getVideo(camera1);
+            CvSink cvSink2 = cameraServer.getVideo(camera2);
             CvSource outputStream = CameraServer.getInstance().putVideo("Switcher", 320, 240);
             
             // OpenCV Matrix object to store the camera object
@@ -42,16 +46,24 @@ public class Vision {
             		cameraState = !cameraState;
             	}
             	
-            	//depending on active camera state, disabe one camera and start the other
+            	//depending on active camera state, disable one camera and start the other
             	// then grab the current image from that camera
                 if(cameraState){
-                  cvSink2.setEnabled(false);
-                  cvSink1.setEnabled(true);
-                  cvSink1.grabFrame(image);
+                	camera2.setFPS(0);
+                	camera1.setFPS(30);
+                	
+                	cvSink2.setEnabled(false);
+                	cvSink1.setEnabled(true);
+                	
+                	cvSink1.grabFrame(image);
                 } else{
-                  cvSink1.setEnabled(false);
-                  cvSink2.setEnabled(true);
-                  cvSink2.grabFrame(image);     
+                	camera1.setFPS(0);
+                	camera2.setFPS(30);
+                	
+                	cvSink1.setEnabled(false);
+                	cvSink2.setEnabled(true);  
+                	
+                	cvSink2.grabFrame(image);
                 }
                 
                 //Put the current image into the output camera server
