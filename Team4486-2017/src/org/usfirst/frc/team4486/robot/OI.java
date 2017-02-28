@@ -63,7 +63,7 @@ public OI(){
 	elevatorButton.whileHeld(new ElevatorActuate());
 	openHopperButton.whenPressed(new HopperOpen());
 	closeHopperButton.whenPressed(new HopperClose());
-	winchButton.whileHeld(new WinchActuate());
+	winchButton.whileHeld(new WinchBackwards());
 }
 	
 }

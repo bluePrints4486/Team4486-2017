@@ -35,6 +35,12 @@ public class WinchSystem extends Subsystem {
 		bottomMotor.set(0);
 	}
 	
+	public void winchBackwards()
+	{
+		topMotor.set(1.0*Math.abs(OI.manipulatorJoystick.getY()));
+		bottomMotor.set(1.0*Math.abs(OI.manipulatorJoystick.getY()));
+	}
+	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
