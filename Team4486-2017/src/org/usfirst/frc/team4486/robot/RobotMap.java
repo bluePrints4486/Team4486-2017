@@ -24,11 +24,15 @@ public class RobotMap {
 	   public static final int rearLeftChannel = 3;
 	   public static final int frontRightChannel = 0;
 	   public static final int rearRightChannel	= 1;
-	   public static final int ELEVATOR_MOTOR = 4;
-	   public static final int WINCHMOTOR_TOP = 5;
+	   public static final int ELEVATOR_MOTOR = 5;
+	   public static final int WINCHMOTOR_TOP = 4;
 	   public static final int WINCHMOTOR_BOTTOM = 6; 
 	   public static final int INTAKE_LEFT = 7; //Using right and left relative to looking at the robot from the ball pick up side
 	   public static final int INTAKE_RIGHT = 8;
+	   
+	   //CAN Inputs
+	   public static final int CONTINUOUS_MOTOR = 0;
+	   
 	   
 	   
 	   //Pneumatics PCM ports
