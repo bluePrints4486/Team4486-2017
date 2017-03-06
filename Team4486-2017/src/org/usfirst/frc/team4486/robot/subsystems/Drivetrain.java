@@ -24,6 +24,7 @@ public class Drivetrain extends Subsystem {
     // here. Call these from Commands.
 	
 	RobotDrive robotDrive;
+	CANTalon midTake;
 	private Gyro robotGyro;
 	double Kp = 0.03;
 	
@@ -35,22 +36,24 @@ public class Drivetrain extends Subsystem {
 		VictorSP rLeftChannel = new VictorSP(RobotMap.rearLeftChannel);
 		VictorSP fRightChannel = new VictorSP(RobotMap.frontRightChannel);
 		VictorSP rRightChannel = new VictorSP(RobotMap.rearRightChannel);
-		CANTalon midTake = new CANTalon(RobotMap.CONTINUOUS_MOTOR);
+		midTake = new CANTalon(RobotMap.CONTINUOUS_MOTOR);
 		
 		robotDrive = new RobotDrive(fLeftChannel, rLeftChannel, fRightChannel, rRightChannel);
 		
-		robotDrive.setInvertedMotor(MotorType.kFrontRight, true);	// invert the left side motors
-		robotDrive.setInvertedMotor(MotorType.kRearRight, true); 		// you may need to change or remove this to match your robot
+		robotDrive.setInvertedMotor(MotorType.kFrontRight, true);	// invert the left side motors //originally true
+		robotDrive.setInvertedMotor(MotorType.kRearRight, true); //Originally true
+		//robotDrive.setInvertedMotor(MotorType.kFrontLeft, true);
+		//robotDrive.setInvertedMotor(MotorType.kRearRight, true); // you may need to change or remove this to match your robot
 		robotDrive.setMaxOutput(0.5);
 		
 	}
 	
 	public void drive(){
 		robotDrive.mecanumDrive_Cartesian(OI.driverStick.getX(), OI.driverStick.getY(), OI.driverStick.getZ(), 0);
-	/*if (robotDrive.isAlive())
+	if (robotDrive.isAlive())
 		{
-			
-		} */
+			midTake.set(1);
+		} 
 	} 
 	public void driveStop(){
 		robotDrive.setMaxOutput(0);
@@ -64,9 +67,23 @@ public class Drivetrain extends Subsystem {
         Timer.delay(0.004);
 	}
 	
-	public void autoDrive(double time){
+	public void autoDrive(){
+		robotDrive.setInvertedMotor(MotorType.kFrontLeft, false);
+		robotDrive.setInvertedMotor(MotorType.kRearLeft, false);
+		robotDrive.setInvertedMotor(MotorType.kFrontRight, false);
+		robotDrive.setInvertedMotor(MotorType.kRearRight, false);
 		robotDrive.setMaxOutput(1);
 		robotDrive.setLeftRightMotorOutputs(-1, -1);
+		//robotDrive.stopMotor();
+	}
+	
+	public void stopAutoDrive(){
+		robotDrive.stopMotor();
+	}
+	
+	public void sweeperRun()
+	{
+		midTake.set(1);
 	}
 
     public void initDefaultCommand() {

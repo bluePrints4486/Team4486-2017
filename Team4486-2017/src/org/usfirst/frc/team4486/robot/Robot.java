@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team4486.robot.commands.Auto2;
 import org.usfirst.frc.team4486.robot.subsystems.*;
 
 /**
@@ -31,7 +32,7 @@ public class Robot extends IterativeRobot {
 	
 	public static OI oi;  
 
-	Command autonomousCommand;
+	Command autonomousCommand = new Auto2();
 	//SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/**
