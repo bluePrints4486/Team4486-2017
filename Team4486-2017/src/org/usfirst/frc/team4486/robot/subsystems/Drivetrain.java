@@ -49,12 +49,16 @@ public class Drivetrain extends Subsystem {
 	}
 	
 	public void drive(){
-		robotDrive.mecanumDrive_Cartesian(OI.driverStick.getX(), OI.driverStick.getY(), OI.driverStick.getZ(), 0);
-	if (robotDrive.isAlive())
+		if (Math.abs(OI.driverStick.getY()) < 0.1)
 		{
-			midTake.set(1);
-		} 
+			robotDrive.mecanumDrive_Cartesian(0, 0, 0, 0);
+		}
+		else 
+		{
+		robotDrive.mecanumDrive_Cartesian(OI.driverStick.getX(), OI.driverStick.getY(), OI.driverStick.getZ(), 0);
+		}
 	} 
+	
 	public void driveStop(){
 		robotDrive.setMaxOutput(0);
 	}
