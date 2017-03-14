@@ -48,6 +48,11 @@ public class Navigation extends Subsystem {
 		ahrs.reset();
 	}
 	
+	public double getAccel()
+	{
+		return ahrs.getDisplacementX();
+	}
+	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

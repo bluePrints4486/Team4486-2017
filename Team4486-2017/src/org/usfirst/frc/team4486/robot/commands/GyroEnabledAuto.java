@@ -9,6 +9,7 @@ public class GyroEnabledAuto extends CommandGroup {
 
     public GyroEnabledAuto() {
     	addSequential(new CalibrateNavX());
+    	
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
