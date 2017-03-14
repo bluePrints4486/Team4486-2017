@@ -28,6 +28,7 @@ public class Robot extends IterativeRobot {
 	public static IntakeSystem intakeSystem = new IntakeSystem();
 	public static BallElevatorSystem ballElevatorSystem = new BallElevatorSystem();
 	public static HopperSystem hopperSystem = new HopperSystem();
+	public static Navigation navigation = new Navigation();
 	
 	public static CameraServer currSession;
 	

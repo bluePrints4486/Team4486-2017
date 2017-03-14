@@ -28,6 +28,11 @@ public class Navigation extends Subsystem {
 		
 	}
 	
+	public void isCalibrating()
+	{
+		ahrs.isCalibrating();
+	}
+	
 	public double getYaw()
 	{
 		return ahrs.getYaw();
@@ -38,6 +43,10 @@ public class Navigation extends Subsystem {
 		return ahrs.getPitch();
 	}
 	
+	public void resetYaw()
+	{
+		ahrs.reset();
+	}
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
