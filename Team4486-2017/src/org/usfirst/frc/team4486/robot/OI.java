@@ -53,7 +53,9 @@ public class OI {
 	public static Button winchButton = new JoystickButton(manipulatorJoystick, RobotMap.WINCH_BUTTON);
 	public static Button sweeperButton = new JoystickButton(manipulatorJoystick, RobotMap.SWEEPER_RUN);
 	
+	//Driverstick buttons
 	public static Button cameraSwitchButton = new JoystickButton(driverStick, RobotMap.CAMERA_SWITCH_BUTTON);
+	public static Button turboButton  = new JoystickButton(driverStick, RobotMap.TURBO_BUTTON);
 	
 public OI(){
 	upButton.whenPressed(new PickupUp());

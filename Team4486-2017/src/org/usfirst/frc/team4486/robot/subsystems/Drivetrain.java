@@ -55,7 +55,11 @@ public class Drivetrain extends Subsystem {
 		}
 		else 
 		{
-		robotDrive.mecanumDrive_Cartesian(OI.driverStick.getX(), OI.driverStick.getY(), OI.driverStick.getZ(), 0);
+			if(OI.turboButton.get())
+			{
+				robotDrive.setMaxOutput(1);
+			}
+			robotDrive.mecanumDrive_Cartesian(OI.driverStick.getX(), OI.driverStick.getY(), OI.driverStick.getZ(), 0);
 		}
 	} 
 	

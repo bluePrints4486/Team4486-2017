@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4486.robot.commands.Auto2;
+import org.usfirst.frc.team4486.robot.commands.GyroEnabledAuto;
 import org.usfirst.frc.team4486.robot.subsystems.*;
 
 /**
@@ -33,7 +34,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;  
 
 	Command autonomousCommand = new Auto2();
-	//SendableChooser<Command> chooser = new SendableChooser<>();
+	SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -45,10 +46,9 @@ public class Robot extends IterativeRobot {
 		
 		Vision.StartVisionThread();
 		
-		//CameraServer.getInstance().startAutomaticCapture("cam0",0); //rip Abel  
-		//CameraServer.getInstance().startAutomaticCapture("cam1",1); //rip Abel 
-		//chooser.addDefault("Default Auto", new ExampleCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
+		//Testing using the autonomous chooser. Avoid smart dashboard.
+		chooser.addDefault("Middle Timed Drive", new Auto2());
+		chooser.addObject("Test Auto (GYRO)", new GyroEnabledAuto());
 		//SmartDashboard.putData("Auto mode", chooser);
 	}
 

@@ -57,6 +57,7 @@ public class RobotMap {
 	   
 	   //Driver joystick buttons
 	   public static final int CAMERA_SWITCH_BUTTON = 1;
+	   public static final int TURBO_BUTTON = 2;
 	    
 	    //Joystick ports
 	   public static final int joystickChannel	= 0;
