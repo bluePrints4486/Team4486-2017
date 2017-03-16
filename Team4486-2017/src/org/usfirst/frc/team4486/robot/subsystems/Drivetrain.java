@@ -25,12 +25,9 @@ public class Drivetrain extends Subsystem {
 	
 	RobotDrive robotDrive;
 	CANTalon midTake;
-	private Gyro robotGyro;
-	double Kp = 0.03;
 	
 	public Drivetrain(){
 		//Gyro initialization
-		robotGyro = new ADXRS450_Gyro();
 		
 		VictorSP fLeftChannel = new VictorSP(RobotMap.frontLeftChannel);
 		VictorSP rLeftChannel = new VictorSP(RobotMap.rearLeftChannel);
@@ -65,14 +62,6 @@ public class Drivetrain extends Subsystem {
 	
 	public void driveStop(){
 		robotDrive.setMaxOutput(0);
-	}
-	
-	public void gyroAuto()
-	{
-		robotGyro.reset();
-        double angle = robotGyro.getAngle(); // get current heading
-        robotDrive.drive(-1.0, -angle*Kp); // drive towards heading 0
-        Timer.delay(0.004);
 	}
 	
 	public void autoDrive(){

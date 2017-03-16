@@ -3,6 +3,8 @@ package org.usfirst.frc.team4486.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc.team4486.robot.commands.*;
 
 
@@ -68,6 +70,15 @@ public OI(){
 	closeHopperButton.whenPressed(new HopperClose());
 	winchButton.whileHeld(new WinchBackwards());
 	sweeperButton.whileHeld(new RunSweeper());
+	
+	
+}
+
+public static void updateSmartDashboard()
+{
+	SmartDashboard.putNumber("NavX Yaw: " , Robot.navigation.getYaw());
+	SmartDashboard.putNumber("Acceleration: ", Robot.navigation.getAccel());
+	SmartDashboard.putNumber("Pitch: ", Robot.navigation.getPitch());
 }
 	
 }

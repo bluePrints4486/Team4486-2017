@@ -4,6 +4,7 @@ import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -15,7 +16,7 @@ public class Navigation extends Subsystem {
     // here. Call these from Commands.
 	public static AHRS ahrs = null;
 	
-	public void init()
+	public Navigation()
 	{
 		try
 		{
@@ -27,6 +28,7 @@ public class Navigation extends Subsystem {
 		}
 		
 	}
+	
 	
 	public void isCalibrating()
 	{

@@ -50,7 +50,6 @@ public class Robot extends IterativeRobot {
 		//Testing using the autonomous chooser. Avoid smart dashboard.
 		chooser.addDefault("Middle Timed Drive", new Auto2());
 		chooser.addObject("Test Auto (GYRO)", new GyroEnabledAuto());
-		//SmartDashboard.putData("Auto mode", chooser);
 	}
 
 	/**
@@ -81,7 +80,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		//autonomousCommand = chooser.getSelected();
+		autonomousCommand = chooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -119,6 +118,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		OI.updateSmartDashboard();
+		
+		 
 	}
 
 	/**
