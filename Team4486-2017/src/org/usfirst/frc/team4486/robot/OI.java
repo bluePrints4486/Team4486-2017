@@ -74,7 +74,7 @@ public OI(){
 	
 }
 
-public static void updateSmartDashboard()
+public void updateSmartDashboard()
 {
 	SmartDashboard.putNumber("NavX Yaw: " , Robot.navigation.getYaw());
 	SmartDashboard.putNumber("Acceleration: ", Robot.navigation.getAccel());

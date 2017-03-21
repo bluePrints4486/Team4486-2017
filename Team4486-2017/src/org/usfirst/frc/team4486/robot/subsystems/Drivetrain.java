@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4486.robot.subsystems;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
@@ -84,6 +85,12 @@ public class Drivetrain extends Subsystem {
 	{
 		midTake.set(1);
 	}
+	
+	public void arcadeAutoDrive(double driveSpeed, double angle)
+	{
+		robotDrive.arcadeDrive(driveSpeed, angle);
+	}
+
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
