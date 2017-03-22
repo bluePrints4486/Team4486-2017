@@ -21,7 +21,7 @@ public class RobotMap {
 	
 	   //PWM ports
 	   public static final int frontLeftChannel	= 2;	
-	   public static final int rearLeftChannel = 3;
+	   public static final int rearLeftChannel = 3; //Zeroith PWM Port
 	   public static final int frontRightChannel = 0;
 	   public static final int rearRightChannel	= 1;
 	   public static final int ELEVATOR_MOTOR = 5;

@@ -8,8 +8,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class GyroEnabledAuto extends CommandGroup {
 
     public GyroEnabledAuto() {
-    	addSequential(new CalibrateNavX());
-    	
+    	//addSequential(new CalibrateNavX());
+    	addSequential(new AutoDrive(0.3));
+    	addSequential(new Delay(5));
+    	addSequential(new DriveUntillZeroYaw());
+    	addSequential(new AutoDrive(0.2));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

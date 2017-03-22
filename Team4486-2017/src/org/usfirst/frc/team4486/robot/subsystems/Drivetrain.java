@@ -88,6 +88,10 @@ public class Drivetrain extends Subsystem {
 	
 	public void arcadeAutoDrive(double driveSpeed, double angle)
 	{
+		robotDrive.setInvertedMotor(MotorType.kFrontLeft, false);
+		robotDrive.setInvertedMotor(MotorType.kRearLeft, false);
+		robotDrive.setInvertedMotor(MotorType.kFrontRight, false);
+		robotDrive.setInvertedMotor(MotorType.kRearRight, false);
 		robotDrive.arcadeDrive(driveSpeed, angle);
 	}
 

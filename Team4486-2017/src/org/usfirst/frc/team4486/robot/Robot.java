@@ -29,13 +29,14 @@ public class Robot extends IterativeRobot {
 	public static BallElevatorSystem ballElevatorSystem = new BallElevatorSystem();
 	public static HopperSystem hopperSystem = new HopperSystem();
 	public static Navigation navigation = new Navigation();
+	public static NavigationYawPID navigationYawPID = new NavigationYawPID();
 	
 	public static CameraServer currSession;
 	
 	public static OI oi;  
 
-	Command autonomousCommand = new Auto2();
-	SendableChooser<Command> chooser = new SendableChooser<>();
+	Command autonomousCommand = new GyroEnabledAuto();
+	//SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -48,8 +49,8 @@ public class Robot extends IterativeRobot {
 		Vision.StartVisionThread();
 		
 		//Testing using the autonomous chooser. Avoid smart dashboard.
-		chooser.addDefault("Middle Timed Drive", new Auto2());
-		chooser.addObject("Test Auto (GYRO)", new GyroEnabledAuto());
+		//chooser.addDefault("Middle Timed Drive", new GyroEnabledAuto());
+		//chooser.addObject("Test Auto (GYRO)", new Auto2());
 	}
 
 	/**
@@ -80,7 +81,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
+		//autonomousCommand = chooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
