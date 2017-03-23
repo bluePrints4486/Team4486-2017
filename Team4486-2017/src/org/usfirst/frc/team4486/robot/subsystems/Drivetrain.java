@@ -2,6 +2,7 @@ package org.usfirst.frc.team4486.robot.subsystems;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
@@ -13,6 +14,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
 
 import org.usfirst.frc.team4486.robot.commands.*;
 import org.usfirst.frc.team4486.robot.OI;
+import org.usfirst.frc.team4486.robot.Robot;
 import org.usfirst.frc.team4486.robot.RobotMap;
 
 import com.ctre.CANTalon;
@@ -26,6 +28,14 @@ public class Drivetrain extends Subsystem {
 	
 	RobotDrive robotDrive;
 	CANTalon midTake;
+	PIDController gyroPID;
+	PIDOutput gyroOutput;
+	double kP = 0.06;
+	double kI = 0.002;
+	double kD = 0.2;
+	double kF = 0;
+	double setPoint;
+	double yawTolerance = 2.0;
 	
 	public Drivetrain(){
 		//Gyro initialization
@@ -43,6 +53,8 @@ public class Drivetrain extends Subsystem {
 		//robotDrive.setInvertedMotor(MotorType.kFrontLeft, true);
 		//robotDrive.setInvertedMotor(MotorType.kRearRight, true); // you may need to change or remove this to match your robot
 		robotDrive.setMaxOutput(0.5);
+		gyroPID = new PIDController(kP, kI, kD, 500, Robot.navigation.ahrs, gyroOutput);
+		gyroPID.setAbsoluteTolerance(yawTolerance);
 		
 	}
 	
@@ -93,6 +105,11 @@ public class Drivetrain extends Subsystem {
 		robotDrive.setInvertedMotor(MotorType.kFrontRight, false);
 		robotDrive.setInvertedMotor(MotorType.kRearRight, false);
 		robotDrive.arcadeDrive(driveSpeed, angle);
+	}
+	
+	public void beginYawPID(){
+		gyroPID.enable();
+		
 	}
 
 

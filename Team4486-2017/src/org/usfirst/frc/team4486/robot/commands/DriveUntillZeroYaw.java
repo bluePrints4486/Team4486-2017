@@ -27,13 +27,14 @@ public class DriveUntillZeroYaw extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.drivetrain.arcadeAutoDrive(0.0, Robot.navigationYawPID.getOutput());
-    	if(Robot.navigationYawPID.onRawTarget()){
-    		return;
-    	}
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	if(Robot.navigationYawPID.onRawTarget()){
+    		return true;
+    	}
         return false;
     }
 
