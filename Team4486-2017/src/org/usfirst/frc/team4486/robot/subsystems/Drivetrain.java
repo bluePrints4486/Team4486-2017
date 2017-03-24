@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.RobotDrive;
 
@@ -136,6 +137,10 @@ public class Drivetrain extends Subsystem {
 		return distance;
 	}
 
+	public void sonarSmartDashboardUpdate()
+	{
+		SmartDashboard.putNumber("Sonar Distance: ", getSonarDistance());
+	}
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
