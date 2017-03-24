@@ -62,9 +62,11 @@ public class NavigationYawPID extends PIDSubsystem {
     	}
     	return output;
     }
+    
     //Currently this function only gets the raw error whether it be off.
     //We want the negative error in order to determine direction to which we want the 
     //z-axis to turn
+    
 	public boolean onRawTarget() {
 		if (Math.abs(Robot.navigation.getYaw() - getPIDController().getSetpoint()) < yawTolerance) {
 			return true;

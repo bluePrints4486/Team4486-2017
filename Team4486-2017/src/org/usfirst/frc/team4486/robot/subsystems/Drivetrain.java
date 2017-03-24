@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.RobotDrive.MotorType;
@@ -36,6 +37,8 @@ public class Drivetrain extends Subsystem {
 	double kF = 0;
 	double setPoint;
 	double yawTolerance = 2.0;
+	double maxYawSpeed = 0.6;
+	public static SerialPort sonarSerial;
 	
 	public Drivetrain(){
 		//Gyro initialization
@@ -53,9 +56,10 @@ public class Drivetrain extends Subsystem {
 		//robotDrive.setInvertedMotor(MotorType.kFrontLeft, true);
 		//robotDrive.setInvertedMotor(MotorType.kRearRight, true); // you may need to change or remove this to match your robot
 		robotDrive.setMaxOutput(0.5);
-		gyroPID = new PIDController(kP, kI, kD, 500, Robot.navigation.ahrs, gyroOutput);
-		gyroPID.setAbsoluteTolerance(yawTolerance);
+		gyroPID = new PIDController(kP, kI, kD, 500, Navigation.ahrs, gyroOutput);
+		gyroPID.setSetpoint(0.0);
 		
+		sonarSerial = new SerialPort(9600,SerialPort.Port.kMXP,8,SerialPort.Parity.kNone,SerialPort.StopBits.kOne);
 	}
 	
 	public void drive(){
@@ -107,9 +111,29 @@ public class Drivetrain extends Subsystem {
 		robotDrive.arcadeDrive(driveSpeed, angle);
 	}
 	
-	public void beginYawPID(){
+	public void enableYawPID(){
+		gyroPID.setAbsoluteTolerance(yawTolerance);
+		gyroPID.setOutputRange(-maxYawSpeed, maxYawSpeed);
 		gyroPID.enable();
-		
+	}
+	
+	public boolean onRawTarget() {
+		if (Math.abs(Robot.navigation.getYaw() - gyroPID.getSetpoint()) < yawTolerance) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public double getSonarDistance()
+	{
+		String buffer;
+		double distance;
+		sonarSerial.enableTermination();
+		buffer = sonarSerial.readString();
+		distance = Double.parseDouble(buffer.substring(buffer.indexOf('R')+1, buffer.indexOf('R')+5));
+		return distance;
 	}
 
 
