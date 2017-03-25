@@ -23,22 +23,13 @@ import com.ctre.CANTalon;
 /**
  *
  */
-public class Drivetrain extends Subsystem implements PIDOutput {
+public class Drivetrain extends Subsystem{
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
 	RobotDrive robotDrive;
 	CANTalon midTake;
-	PIDController gyroPID;
-	PIDOutput gyroOutput;
-	double kP = 0.06;
-	double kI = 0.002;
-	double kD = 0.2;
-	double kF = 0;
-	double setPoint;
-	double yawTolerance = 2.0;
-	double maxYawSpeed = 0.6;
 	public static SerialPort sonarSerial;
 	
 	public Drivetrain(){
@@ -57,8 +48,6 @@ public class Drivetrain extends Subsystem implements PIDOutput {
 		//robotDrive.setInvertedMotor(MotorType.kFrontLeft, true);
 		//robotDrive.setInvertedMotor(MotorType.kRearRight, true); // you may need to change or remove this to match your robot
 		robotDrive.setMaxOutput(0.5);
-		gyroPID = new PIDController(kP, kI, kD, kF, Navigation.ahrs, this);
-	    gyroPID.setSetpoint(0.0);
 		
 		sonarSerial = new SerialPort(9600,SerialPort.Port.kMXP,8,SerialPort.Parity.kNone,SerialPort.StopBits.kOne);
 	}
@@ -114,20 +103,6 @@ public class Drivetrain extends Subsystem implements PIDOutput {
 		robotDrive.arcadeDrive(driveSpeed, angle);
 	}
 	
-	public void enableYawPID(){
-		gyroPID.setAbsoluteTolerance(yawTolerance);
-		gyroPID.setOutputRange(-maxYawSpeed, maxYawSpeed);
-		gyroPID.enable();
-	}
-	
-	public boolean onRawTarget() {
-		if (Math.abs(Robot.navigation.getYaw() - gyroPID.getSetpoint()) < yawTolerance) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
 	
 	public double getSonarDistance()
 	{
@@ -151,12 +126,5 @@ public class Drivetrain extends Subsystem implements PIDOutput {
     	
     }
 
-
-
-	@Override
-	public void pidWrite(double output) {
-		// TODO Auto-generated method stub
-		
-	}
 }
 
