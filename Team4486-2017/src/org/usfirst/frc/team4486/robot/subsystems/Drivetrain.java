@@ -23,7 +23,7 @@ import com.ctre.CANTalon;
 /**
  *
  */
-public class Drivetrain extends Subsystem {
+public class Drivetrain extends Subsystem implements PIDOutput {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -57,11 +57,13 @@ public class Drivetrain extends Subsystem {
 		//robotDrive.setInvertedMotor(MotorType.kFrontLeft, true);
 		//robotDrive.setInvertedMotor(MotorType.kRearRight, true); // you may need to change or remove this to match your robot
 		robotDrive.setMaxOutput(0.5);
-		gyroPID = new PIDController(kP, kI, kD, 500, Navigation.ahrs, gyroOutput);
-		gyroPID.setSetpoint(0.0);
+		gyroPID = new PIDController(kP, kI, kD, kF, Navigation.ahrs, this);
+	    gyroPID.setSetpoint(0.0);
 		
 		sonarSerial = new SerialPort(9600,SerialPort.Port.kMXP,8,SerialPort.Parity.kNone,SerialPort.StopBits.kOne);
 	}
+	
+
 	
 	public void drive(){
 		//if (Math.abs(OI.driverStick.getY()) < 0.1 || Math.abs(OI.driverStick.getX()) < 0.1 || Math.abs(OI.driverStick.getZ())< 0.1)
@@ -148,5 +150,13 @@ public class Drivetrain extends Subsystem {
     	setDefaultCommand(new Drive());
     	
     }
+
+
+
+	@Override
+	public void pidWrite(double output) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 

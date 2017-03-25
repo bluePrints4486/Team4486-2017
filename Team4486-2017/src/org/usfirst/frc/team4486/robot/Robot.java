@@ -120,7 +120,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		navigation.navXSmartDashboardUpdates();
-		drivetrain.sonarSmartDashboardUpdate();
+		//drivetrain.sonarSmartDashboardUpdate();
 		 
 	}
 
