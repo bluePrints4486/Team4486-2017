@@ -30,7 +30,7 @@ public class Drivetrain extends Subsystem{
 	
 	RobotDrive robotDrive;
 	CANTalon midTake;
-	public static SerialPort sonarSerial;
+
 	
 	public Drivetrain(){
 		//Gyro initialization
@@ -49,7 +49,7 @@ public class Drivetrain extends Subsystem{
 		//robotDrive.setInvertedMotor(MotorType.kRearRight, true); // you may need to change or remove this to match your robot
 		robotDrive.setMaxOutput(0.5);
 		
-		sonarSerial = new SerialPort(9600,SerialPort.Port.kMXP,8,SerialPort.Parity.kNone,SerialPort.StopBits.kOne);
+
 	}
 	
 
@@ -80,8 +80,8 @@ public class Drivetrain extends Subsystem{
 		robotDrive.setInvertedMotor(MotorType.kRearLeft, false);
 		robotDrive.setInvertedMotor(MotorType.kFrontRight, false);
 		robotDrive.setInvertedMotor(MotorType.kRearRight, false);
-		robotDrive.setMaxOutput(1);
-		robotDrive.setLeftRightMotorOutputs(-1, -1);
+		robotDrive.setMaxOutput(0.4);
+		robotDrive.setLeftRightMotorOutputs(-0.4, -0.4);
 		//robotDrive.stopMotor();
 	}
 	
@@ -103,21 +103,21 @@ public class Drivetrain extends Subsystem{
 		robotDrive.arcadeDrive(driveSpeed, angle);
 	}
 	
+	public void driveSideways(){
+		robotDrive.mecanumDrive_Cartesian(-OI.driverStick.getY(), OI.driverStick.getX(), OI.driverStick.getZ(), 0);
+		
+	}
+	public void driveBackwards()
+	{
+		if(OI.turboButton.get())
+		{
+			robotDrive.setMaxOutput(1);
+		}
+		else{
+		robotDrive.mecanumDrive_Cartesian(OI.driverStick.getX(), -OI.driverStick.getY(), OI.driverStick.getZ(), 0);
+		}
+	}
 	
-	public double getSonarDistance()
-	{
-		String buffer;
-		double distance;
-		sonarSerial.enableTermination();
-		buffer = sonarSerial.readString();
-		distance = Double.parseDouble(buffer.substring(buffer.indexOf('R')+1, buffer.indexOf('R')+5));
-		return distance;
-	}
-
-	public void sonarSmartDashboardUpdate()
-	{
-		SmartDashboard.putNumber("Sonar Distance: ", getSonarDistance());
-	}
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

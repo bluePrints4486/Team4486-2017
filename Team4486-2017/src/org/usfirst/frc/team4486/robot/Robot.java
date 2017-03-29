@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team4486.robot.commands.Auto2;
-import org.usfirst.frc.team4486.robot.commands.GyroEnabledAuto;
+import org.usfirst.frc.team4486.robot.commands.Lane1And3Auto;
+import org.usfirst.frc.team4486.robot.commands.Lane2Auto;
 import org.usfirst.frc.team4486.robot.subsystems.*;
 
 /**
@@ -30,12 +30,14 @@ public class Robot extends IterativeRobot {
 	public static HopperSystem hopperSystem = new HopperSystem();
 	public static Navigation navigation = new Navigation();
 	public static NavigationYawPID navigationYawPID = new NavigationYawPID();
+	public static sonarSubsystem sonarsubsystem = new sonarSubsystem();
+	public static DriveDistancePID driveDistancePID = new DriveDistancePID();
 	
 	public static CameraServer currSession;
 	
 	public static OI oi;  
 
-	Command autonomousCommand = new GyroEnabledAuto();
+	Command autonomousCommand = new Lane2Auto();
 	//SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/**
@@ -46,7 +48,10 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		oi = new OI();
 		
-		Vision.StartVisionThread();
+		Vision.StartVisionThread(); // Camera switcher thread
+		
+		
+		
 		
 		//Testing using the autonomous chooser. Avoid smart dashboard.
 		//chooser.addDefault("Middle Timed Drive", new GyroEnabledAuto());
@@ -119,8 +124,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		navigation.navXSmartDashboardUpdates();
-		//drivetrain.sonarSmartDashboardUpdate();
+		//navigation.navXSmartDashboardUpdates();
+		sonarsubsystem.sonarSmartDashboardUpdate();
 		 
 	}
 

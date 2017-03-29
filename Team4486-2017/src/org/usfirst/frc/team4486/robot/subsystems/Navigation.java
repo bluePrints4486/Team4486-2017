@@ -28,6 +28,7 @@ public class Navigation extends Subsystem {
 	{
 		super(Name);
 		init();
+		resetDisplacement();
 	}
 	
 	public void init()
@@ -64,9 +65,13 @@ public class Navigation extends Subsystem {
 		ahrs.reset();
 	}
 	
-	public double getAccel()
+	public double getDisplacement()
 	{
 		return ahrs.getDisplacementX();
+	}
+	public void resetDisplacement()
+	{
+		ahrs.resetDisplacement();
 	}
 	
 	public void navXSmartDashboardUpdates()
@@ -95,7 +100,7 @@ public class Navigation extends Subsystem {
         /* Display Processed Acceleration Data (Linear Acceleration, Motion Detect) */
         
         SmartDashboard.putNumber(   "IMU_Accel_X",          ahrs.getWorldLinearAccelX());
-        SmartDashboard.putNumber(   "IMU_Accel_Y",          ahrs.getWorldLinearAccelY());
+        SmartDashboard.putNumber(   "IMU_Accel_Y",          ahrs.getWorldLinearAccelY()); 
         SmartDashboard.putBoolean(  "IMU_IsMoving",         ahrs.isMoving());
         SmartDashboard.putBoolean(  "IMU_IsRotating",       ahrs.isRotating());
 
@@ -148,6 +153,8 @@ public class Navigation extends Subsystem {
         /* Connectivity Debugging Support                                           */
         SmartDashboard.putNumber(   "IMU_Byte_Count",       ahrs.getByteCount());
         SmartDashboard.putNumber(   "IMU_Update_Count",     ahrs.getUpdateCount());
+        
+        //SmartDashboard.putNuber("Displacement Raw: ", ahrs.)
 	}
 	
     public void initDefaultCommand() {

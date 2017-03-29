@@ -54,6 +54,9 @@ public class OI {
 	public static Button closeHopperButton = new JoystickButton(manipulatorJoystick, RobotMap.H_CLOSE);
 	public static Button winchButton = new JoystickButton(manipulatorJoystick, RobotMap.WINCH_BUTTON);
 	public static Button sweeperButton = new JoystickButton(manipulatorJoystick, RobotMap.SWEEPER_RUN);
+	public static Button sidewaysButton = new JoystickButton(driverStick, RobotMap.DRIVE_SIDEWAYS);
+	public static Button backwardsButton = new JoystickButton(driverStick, RobotMap.BACKWARDS_BUTTON);
+	public static Button reverseGearIntake = new JoystickButton(manipulatorJoystick, RobotMap.REMOVE_GEAR_BUTTON);
 	
 	//Driverstick buttons
 	public static Button cameraSwitchButton = new JoystickButton(driverStick, RobotMap.CAMERA_SWITCH_BUTTON);
@@ -70,8 +73,9 @@ public OI(){
 	closeHopperButton.whenPressed(new HopperClose());
 	winchButton.whileHeld(new WinchBackwards());
 	sweeperButton.whileHeld(new RunSweeper());
-	
-	
+	sidewaysButton.whileHeld(new SidewaysDrive());
+	backwardsButton.whileHeld(new DriveBackwards());
+	reverseGearIntake.whileHeld(new ReverseIntake());
 }
 
 	

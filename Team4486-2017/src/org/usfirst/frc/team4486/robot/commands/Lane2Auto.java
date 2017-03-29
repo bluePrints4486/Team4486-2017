@@ -1,14 +1,27 @@
 package org.usfirst.frc.team4486.robot.commands;
 
+import org.usfirst.frc.team4486.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class Auto2 extends CommandGroup {
+public class Lane2Auto extends CommandGroup {
 
-    public Auto2() {
-    	addSequential(new AutoDrive(1));
+    public Lane2Auto() {
+    	/*
+    	while(Robot.navigation.getYaw() > 1){
+    		if(Math.abs(Robot.navigation.getYaw()) > 1){
+    			addParallel(new DriveUntillZeroYaw());
+    		}
+    		else{
+    		
+    		}
+    		}
+    		*/
+    	addSequential(new AutoDrive(5));
+    	addParallel(new AutoDriveGyro());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

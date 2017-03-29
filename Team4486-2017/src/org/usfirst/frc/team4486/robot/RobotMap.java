@@ -46,20 +46,26 @@ public class RobotMap {
 	   //Manipulator joystick buttons
 	   public static final int upButton = 7;
 	   public static final int downButton = 9;
-	   public static final int openButton = 8;
-	   public static final int closeButton = 10;
-	   public static final int INTAKE_BUTTON = 5;
-	   public static final int ELEVATOR_BUTTON = 1;
-	   public static final int H_OPEN = 4;
-	   public static final int H_CLOSE = 6;
+	   public static final int openButton = 4; //Down
+	   public static final int closeButton = 6; //Up
+	   public static final int INTAKE_BUTTON = 3; //Intaking the gear
+	   public static final int REMOVE_GEAR_BUTTON = 5; //Remove gear
+	   public static final int ELEVATOR_BUTTON = 1; 
+	   public static final int H_OPEN = 8;
+	   public static final int H_CLOSE = 10;
 	   public static final int WINCH_BUTTON = 2;
 	   public static final int SWEEPER_RUN = 11;
 	   
 	   //Driver joystick buttons
 	   public static final int CAMERA_SWITCH_BUTTON = 1;
 	   public static final int TURBO_BUTTON = 2;
+	   public static final int DRIVE_SIDEWAYS = 5; //For driving sideways where we climb
+	   public static final int BACKWARDS_BUTTON = 6;
 	    
 	    //Joystick ports
 	   public static final int joystickChannel	= 0;
 	   public static final int manipulatorJoystick = 1;
+	   
+	   //Analog Ports
+	   public static final int sonarPort = 0;
 }

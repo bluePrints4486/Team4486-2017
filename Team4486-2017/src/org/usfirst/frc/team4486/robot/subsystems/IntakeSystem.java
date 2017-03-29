@@ -23,6 +23,12 @@ public class IntakeSystem extends Subsystem {
 		rightIntake.set(1);
 	}
 	
+	public void reverseIntake()
+	{
+		leftIntake.set(-1);
+		rightIntake.set(-1);
+	}
+	
 	public void intakeStop()
 	{
 		leftIntake.set(0);

@@ -15,8 +15,8 @@ public class NavigationYawPID extends PIDSubsystem {
 	double kP = 0.06;
 	double kI = 0.002;
 	double kD = 0.2;
-	double yawTolerance = 6.0;
-	double maxYawSpeed = 0.6;
+	double yawTolerance = 1.0;
+	double maxYawSpeed = 1;
 	
     // Initialize your subsystem here
     public NavigationYawPID() {

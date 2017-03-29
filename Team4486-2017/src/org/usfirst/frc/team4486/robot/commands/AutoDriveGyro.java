@@ -7,46 +7,47 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveUntillZeroYaw extends Command {
+public class AutoDriveGyro extends Command {
 
-    public DriveUntillZeroYaw() {
-        // Use requires() here to declare subsystem dependencies
+    public AutoDriveGyro() {
+        // Use requires() here to declare subsystem dependencies 
         // eg. requires(chassis);
-    	requires(Robot.navigationYawPID);
     	requires(Robot.drivetrain);
+    	requires(Robot.driveDistancePID);
     	requires(Robot.navigation);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.navigation.resetYaw();
-    	Robot.navigationYawPID.enable();
-    	Robot.navigationYawPID.setSetpoint(0);
+    	Robot.navigation.resetDisplacement();
+    	
+    	Robot.driveDistancePID.setSetpoint(0.5);
+    	Robot.driveDistancePID.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drivetrain.arcadeAutoDrive(0.0, Robot.navigationYawPID.getOutput());
-    	
+    	Robot.drivetrain.arcadeAutoDrive(Robot.driveDistancePID.getOutput(), 0.0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(Robot.navigationYawPID.onRawTarget()){
-    		return true;
-    	}
-        return false;
+        if(Robot.driveDistancePID.onRawTarget()){
+        	return true;
+        }
+        else{
+        	return false;
+        }
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.navigationYawPID.disable();
-    	Robot.navigationYawPID.setSetpoint(0.0);
+    	Robot.driveDistancePID.disable();
+    	Robot.drivetrain.drive();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
     }
 }
