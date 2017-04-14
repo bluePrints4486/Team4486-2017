@@ -9,9 +9,9 @@ public class Lane1And3Auto extends CommandGroup {
 
     public Lane1And3Auto() {
     	//addSequential(new CalibrateNavX());
-    	//addSequential(new AutoDrive(0.3));
-    	//addSequential(new Delay(5));
-    	addSequential(new DriveUntillZeroYaw());
+    	addSequential(new AutoDrive(2.25));
+    	addSequential(new Delay(1));
+    	//addSequential(new DriveUntillZeroYaw());
     	//addSequential(new AutoDrive(0.2));
         // Add Commands here:
         // e.g. addSequential(new Command1());

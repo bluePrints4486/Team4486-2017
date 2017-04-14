@@ -37,6 +37,7 @@ public class AutoDrive extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.drivetrain.stopAutoDrive();
+    	//Robot.drivetrain.changeToMecanum();
     }
 
     // Called when another command which requires one or more of the same

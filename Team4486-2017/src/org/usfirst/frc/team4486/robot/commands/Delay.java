@@ -1,14 +1,15 @@
 package org.usfirst.frc.team4486.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team4486.robot.commands.CommandBase;
 
 /**
  *
  */
-public class Delay extends CommandBase{
-
-	double timeOut;
+public class Delay extends CommandBase {
 	
+	
+	double timeOut;
+
     public Delay(double seconds) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

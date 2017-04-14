@@ -47,7 +47,7 @@ public class Drivetrain extends Subsystem{
 		robotDrive.setInvertedMotor(MotorType.kRearRight, true); //Originally true
 		//robotDrive.setInvertedMotor(MotorType.kFrontLeft, true);
 		//robotDrive.setInvertedMotor(MotorType.kRearRight, true); // you may need to change or remove this to match your robot
-		robotDrive.setMaxOutput(0.5);
+		robotDrive.setMaxOutput(1);
 		
 
 	}
@@ -63,11 +63,13 @@ public class Drivetrain extends Subsystem{
 		//{
 			if(OI.turboButton.get())
 			{
-				robotDrive.setMaxOutput(1);
+				robotDrive.setMaxOutput(.4);
 			}
 			else{
-			robotDrive.mecanumDrive_Cartesian(OI.driverStick.getX(), OI.driverStick.getY(), OI.driverStick.getZ(), 0);
+				robotDrive.setMaxOutput(1);
 			}
+			
+			robotDrive.mecanumDrive_Cartesian(OI.driverStick.getX(), OI.driverStick.getY(), OI.driverStick.getZ(), 0);
 		}
  
 	
@@ -80,13 +82,15 @@ public class Drivetrain extends Subsystem{
 		robotDrive.setInvertedMotor(MotorType.kRearLeft, false);
 		robotDrive.setInvertedMotor(MotorType.kFrontRight, false);
 		robotDrive.setInvertedMotor(MotorType.kRearRight, false);
-		robotDrive.setMaxOutput(0.4);
-		robotDrive.setLeftRightMotorOutputs(-0.4, -0.4);
+		robotDrive.setMaxOutput(0.6);
+		robotDrive.setLeftRightMotorOutputs(-0.6, -0.6);
 		//robotDrive.stopMotor();
 	}
 	
 	public void stopAutoDrive(){
 		robotDrive.stopMotor();
+		robotDrive.setInvertedMotor(MotorType.kFrontRight, true);	// invert the left side motors //originally true
+		robotDrive.setInvertedMotor(MotorType.kRearRight, true); //Originally true
 	}
 	
 	public void sweeperRun()
@@ -118,6 +122,11 @@ public class Drivetrain extends Subsystem{
 		}
 	}
 	
+	public void changeToMecanum()
+	{
+		robotDrive.mecanumDrive_Cartesian(OI.driverStick.getX(), OI.driverStick.getY(), OI.driverStick.getZ(), 0);
+		
+	}
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

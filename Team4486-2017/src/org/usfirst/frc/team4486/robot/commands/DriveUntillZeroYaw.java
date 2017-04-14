@@ -21,7 +21,7 @@ public class DriveUntillZeroYaw extends Command {
     protected void initialize() {
     	Robot.navigation.resetYaw();
     	Robot.navigationYawPID.enable();
-    	Robot.navigationYawPID.setSetpoint(0);
+    	Robot.navigationYawPID.setSetpoint(45);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -41,7 +41,7 @@ public class DriveUntillZeroYaw extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.navigationYawPID.disable();
-    	Robot.navigationYawPID.setSetpoint(0.0);
+    	Robot.navigationYawPID.setSetpoint(0);
     }
 
     // Called when another command which requires one or more of the same

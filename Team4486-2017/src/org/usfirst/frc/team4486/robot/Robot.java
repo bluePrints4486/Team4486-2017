@@ -37,7 +37,7 @@ public class Robot extends IterativeRobot {
 	
 	public static OI oi;  
 
-	Command autonomousCommand = new Lane2Auto();
+	Command autonomousCommand = new Lane1And3Auto();
 	//SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/**
@@ -124,7 +124,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		//navigation.navXSmartDashboardUpdates();
+		navigation.navXSmartDashboardUpdates();
 		sonarsubsystem.sonarSmartDashboardUpdate();
 		 
 	}
