@@ -20,7 +20,7 @@ public class Lane2Auto extends CommandGroup {
     		}
     		}
     		*/
-    	addSequential(new AutoDrive(1.5));
+    	addSequential(new AutoDrive(2.25));
     	//addParallel(new AutoDriveGyro());
         // Add Commands here:
         // e.g. addSequential(new Command1());
