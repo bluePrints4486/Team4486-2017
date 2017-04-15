@@ -61,6 +61,9 @@ public class RobotMap {
 	   public static final int TURBO_BUTTON = 2;
 	   public static final int DRIVE_SIDEWAYS = 5; //For driving sideways where we climb
 	   public static final int BACKWARDS_BUTTON = 6;
+	   public static final int LANE_1AUTOBUTTON = 7;
+	    public static final int LANE_2AUTOBUTTON = 9;
+	    public static final int LANE_3AUTOBUTTON = 11;
 	    
 	    //Joystick ports
 	   public static final int joystickChannel	= 0;
@@ -68,4 +71,6 @@ public class RobotMap {
 	   
 	   //Analog Ports
 	   public static final int sonarPort = 0;
+	   
+	   
 }

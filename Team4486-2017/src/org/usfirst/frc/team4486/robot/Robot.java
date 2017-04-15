@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4486.robot.commands.Lane1And3Auto;
 import org.usfirst.frc.team4486.robot.commands.Lane2Auto;
+import org.usfirst.frc.team4486.robot.commands.Lane3Auto;
+import org.usfirst.frc.team4486.robot.commands.Lane1Auto;
 import org.usfirst.frc.team4486.robot.subsystems.*;
 
 /**
@@ -36,8 +38,10 @@ public class Robot extends IterativeRobot {
 	public static CameraServer currSession;
 	
 	public static OI oi;  
+	
+	Command autonomousCommand;
 
-	Command autonomousCommand = new Lane1And3Auto();
+	
 	//SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/**
@@ -50,7 +54,7 @@ public class Robot extends IterativeRobot {
 		
 		Vision.StartVisionThread(); // Camera switcher thread
 		
-		
+		autonomousCommand = new Lane2Auto();
 		
 		
 		//Testing using the autonomous chooser. Avoid smart dashboard.
@@ -65,12 +69,29 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
+		
 
 	}
 
 	@Override
 	public void disabledPeriodic() {
+		
+		if(OI.lane1_autobutton.get()){
+			autonomousCommand = new Lane1Auto();
+		}
+		
+		if(OI.lane2_autobutton.get()){
+			autonomousCommand = new Lane2Auto();
+		}
+		
+		if(OI.lane3_autobutton.get()){
+			autonomousCommand = new Lane3Auto();
+		}
+		
+		
+		
 		Scheduler.getInstance().run();
+		
 	}
 
 	/**

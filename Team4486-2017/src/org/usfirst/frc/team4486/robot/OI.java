@@ -61,7 +61,9 @@ public class OI {
 	//Driverstick buttons
 	public static Button cameraSwitchButton = new JoystickButton(driverStick, RobotMap.CAMERA_SWITCH_BUTTON);
 	public static Button turboButton  = new JoystickButton(driverStick, RobotMap.TURBO_BUTTON);
-	
+	public static Button lane1_autobutton = new JoystickButton(driverStick, RobotMap.LANE_1AUTOBUTTON);
+	public static Button lane2_autobutton = new JoystickButton(driverStick, RobotMap.LANE_2AUTOBUTTON);
+	public static Button lane3_autobutton = new JoystickButton(driverStick, RobotMap.LANE_3AUTOBUTTON);
 public OI(){
 	upButton.whenPressed(new PickupUp());
 	downButton.whenPressed(new PickupDown());

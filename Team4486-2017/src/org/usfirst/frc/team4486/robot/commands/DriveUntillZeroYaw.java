@@ -8,20 +8,37 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class DriveUntillZeroYaw extends Command {
+	
+	private int m_angle;
 
+	// I added another constructor to this command that takes in an angle
+	// as a parameter to make auto coding a bit easier. i left the old constuctor
+	// for compatability
+    public DriveUntillZeroYaw(int angle) {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Robot.navigationYawPID);
+    	requires(Robot.drivetrain);
+    	requires(Robot.navigation);
+    	
+    	this.m_angle = angle;
+    }
+    
     public DriveUntillZeroYaw() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.navigationYawPID);
     	requires(Robot.drivetrain);
     	requires(Robot.navigation);
+    	
+    	this.m_angle = 45;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.navigation.resetYaw();
     	Robot.navigationYawPID.enable();
-    	Robot.navigationYawPID.setSetpoint(45);
+    	Robot.navigationYawPID.setSetpoint(m_angle);
     }
 
     // Called repeatedly when this Command is scheduled to run
