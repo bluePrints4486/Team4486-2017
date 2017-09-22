@@ -1,19 +1,23 @@
 package org.usfirst.frc.team4486.robot;
 
 import org.opencv.core.Mat;
+import org.opencv.core.Rect;
 import org.usfirst.frc.team4486.robot.OI;
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.vision.VisionThread;
 
 public class Vision {
 
-	
+
 	public static void StartVisionThread(){
 		//This block of code is set up as a thread
 		//Everything inside will be run in the background not
 		//interfering with normal robot functions
+		
+		
 		Thread t = new Thread(() -> {
     		
 			//Stores which camera is streaming
@@ -29,6 +33,7 @@ public class Vision {
             UsbCamera camera2 = new UsbCamera("rear camera",1);
             camera2.setResolution(320, 240);
             camera2.setFPS(30);
+            
             
             //Create objects so we can extract images from the camera servers
             // and objects so we can have an output camera server
@@ -71,6 +76,24 @@ public class Vision {
             }
             
         });
+		
         t.start();	//Starts the vision thread
 	}
+	
+	/*
+	public void startGripPipeline()
+	{
+	    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+	    camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
+		 visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
+		        if (!pipeline.filterContoursOutput().isEmpty()) {
+		            Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+		            synchronized (imgLock) {
+		                centerX = r.x + (r.width / 2);
+		            }
+		        }
+		    });
+		    visionThread.start();
+	}
+	*/
 }

@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team4486.robot;
 
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,7 +9,10 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.vision.VisionThread;
 
+import org.opencv.core.Rect;
+import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team4486.robot.commands.Lane1And3Auto;
 import org.usfirst.frc.team4486.robot.commands.Lane2Auto;
 import org.usfirst.frc.team4486.robot.commands.Lane3Auto;
@@ -37,11 +41,22 @@ public class Robot extends IterativeRobot {
 	
 	public static CameraServer currSession;
 	
-	public static OI oi;  
-	
-	Command autonomousCommand;
+
+
+	public static OI oi; 
+
+
+
 
 	
+	Command autonomousCommand = new Lane2Auto();
+	
+	private VisionThread visionThread;
+	private static final int IMG_WIDTH = 320;
+	private static final int IMG_HEIGHT = 240;
+	private double centerX = 0.0;
+	private final Object imgLock = new Object();
+
 	//SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/**
@@ -51,10 +66,23 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
-		
 		Vision.StartVisionThread(); // Camera switcher thread
 		
 		autonomousCommand = new Lane2Auto();
+	    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+	    camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
+	    
+	    visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
+	        if (!pipeline.filterContoursOutput().isEmpty()) {
+	            Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+	            synchronized (imgLock) {
+	                centerX = r.x + (r.width / 2);
+	            }
+	        }
+	    });
+	    visionThread.start();
+	        
+	    //drive = new RobotDrive(1, 2);
 		
 		
 		//Testing using the autonomous chooser. Avoid smart dashboard.
@@ -127,6 +155,12 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		double centerX;
+		synchronized (imgLock) {
+			centerX = this.centerX;
+		}
+		double turn = centerX - (IMG_WIDTH / 2);
+		drivetrain.arcadeAutoDrive(-0.6, turn * 0.005);
 	}
 
 	@Override

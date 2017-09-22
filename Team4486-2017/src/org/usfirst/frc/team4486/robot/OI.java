@@ -57,6 +57,7 @@ public class OI {
 	public static Button sidewaysButton = new JoystickButton(driverStick, RobotMap.DRIVE_SIDEWAYS);
 	public static Button backwardsButton = new JoystickButton(driverStick, RobotMap.BACKWARDS_BUTTON);
 	public static Button reverseGearIntake = new JoystickButton(manipulatorJoystick, RobotMap.REMOVE_GEAR_BUTTON);
+	public static Button shooterbutton = new JoystickButton(manipulatorJoystick,RobotMap.SHOOTER);
 	
 	//Driverstick buttons
 	public static Button cameraSwitchButton = new JoystickButton(driverStick, RobotMap.CAMERA_SWITCH_BUTTON);
@@ -78,6 +79,7 @@ public OI(){
 	sidewaysButton.whileHeld(new SidewaysDrive());
 	backwardsButton.whileHeld(new DriveBackwards());
 	reverseGearIntake.whileHeld(new ReverseIntake());
+	shooterbutton.whileHeld(new RunSweeper());
 }
 
 	

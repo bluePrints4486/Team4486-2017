@@ -12,7 +12,11 @@ public class Lane1Auto extends CommandGroup {
     public Lane1Auto() {
     	addSequential(new AutoDrive(1.1));
     	addSequential(new Delay(1));
-    	addSequential(new DriveUntillZeroYaw(-60));
-    	addSequential(new AutoDrive(2.20));
+    	addSequential(new DriveUntillZeroYaw(60));
+    	addSequential(new AutoDrive(2.45));
+    	addSequential(new Delay(1));
+    	addSequential(new PickupOpen());
+    	addSequential(new Delay(1));
+    	addSequential(new BackwardAutoDrive(0.5));
     }
 }

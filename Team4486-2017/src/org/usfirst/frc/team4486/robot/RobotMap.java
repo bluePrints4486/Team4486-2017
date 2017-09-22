@@ -31,7 +31,7 @@ public class RobotMap {
 	   public static final int INTAKE_RIGHT = 8;
 	   
 	   //CAN Inputs
-	   public static final int CONTINUOUS_MOTOR = 2;
+	   public static final int SHOOTER_MOTOR = 5;
 	   
 	   
 	   
@@ -50,11 +50,12 @@ public class RobotMap {
 	   public static final int closeButton = 6; //Up
 	   public static final int INTAKE_BUTTON = 3; //Intaking the gear
 	   public static final int REMOVE_GEAR_BUTTON = 5; //Remove gear
-	   public static final int ELEVATOR_BUTTON = 1; 
+	   public static final int ELEVATOR_BUTTON = 1;  
 	   public static final int H_OPEN = 8;
 	   public static final int H_CLOSE = 10;
 	   public static final int WINCH_BUTTON = 2;
 	   public static final int SWEEPER_RUN = 11;
+	   public static final int SHOOTER = 12 ;
 	   
 	   //Driver joystick buttons
 	   public static final int CAMERA_SWITCH_BUTTON = 1;

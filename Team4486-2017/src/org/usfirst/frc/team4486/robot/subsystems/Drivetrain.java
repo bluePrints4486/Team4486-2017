@@ -29,7 +29,7 @@ public class Drivetrain extends Subsystem{
     // here. Call these from Commands.
 	
 	RobotDrive robotDrive;
-	CANTalon midTake;
+	CANTalon shootermotor;
 
 	
 	public Drivetrain(){
@@ -39,7 +39,7 @@ public class Drivetrain extends Subsystem{
 		VictorSP rLeftChannel = new VictorSP(RobotMap.rearLeftChannel);
 		VictorSP fRightChannel = new VictorSP(RobotMap.frontRightChannel);
 		VictorSP rRightChannel = new VictorSP(RobotMap.rearRightChannel);
-		midTake = new CANTalon(RobotMap.CONTINUOUS_MOTOR);
+		shootermotor = new CANTalon(RobotMap.SHOOTER_MOTOR);
 		
 		robotDrive = new RobotDrive(fLeftChannel, rLeftChannel, fRightChannel, rRightChannel);
 		
@@ -86,6 +86,15 @@ public class Drivetrain extends Subsystem{
 		robotDrive.setLeftRightMotorOutputs(-0.6, -0.6);
 		//robotDrive.stopMotor();
 	}
+	public void backwardsAutoDrive(){
+		robotDrive.setInvertedMotor(MotorType.kFrontLeft, false);
+		robotDrive.setInvertedMotor(MotorType.kRearLeft, false);
+		robotDrive.setInvertedMotor(MotorType.kFrontRight, false);
+		robotDrive.setInvertedMotor(MotorType.kRearRight, false);
+		robotDrive.setMaxOutput(0.6);
+		robotDrive.setLeftRightMotorOutputs(0.6, 0.6);
+		//robotDrive.stopMotor();
+	}
 	
 	public void stopAutoDrive(){
 		robotDrive.stopMotor();
@@ -93,10 +102,8 @@ public class Drivetrain extends Subsystem{
 		robotDrive.setInvertedMotor(MotorType.kRearRight, true); //Originally true
 	}
 	
-	public void sweeperRun()
-	{
-		midTake.set(1);
-	}
+
+	
 	
 	public void arcadeAutoDrive(double driveSpeed, double angle)
 	{
@@ -128,12 +135,25 @@ public class Drivetrain extends Subsystem{
 		
 	}
 
+    public void shooter()
+
+    {
+    	shootermotor.set(0.6);
+    }
+    
+    public void stopShooter()
+    {
+    	shootermotor.set(0.0);
+    }
+    
+	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     	setDefaultCommand(new Drive());
     	
     }
-
 }
+
+    
 
